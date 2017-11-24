@@ -11,7 +11,9 @@
 |
 */
 
-Route::view('/', 'welcome');
+Route::VIEW('/', 'home');
+
+Route::GET('/trips/{region?}/{trip?}', 'ItineraryController@index');
 
 Route::GET('/env', function () {
     dump(config('app.name'));

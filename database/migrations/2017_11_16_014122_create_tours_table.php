@@ -19,7 +19,7 @@ class CreateToursTable extends Migration
             $table->string('code');
             $table->string('tile_image');
             $table->longText('descr');
-            $table->string('continent');
+            $table->string('region');
             $table->string('name');
         });
     }

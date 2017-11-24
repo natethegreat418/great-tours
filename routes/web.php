@@ -11,9 +11,18 @@
 |
 */
 
-Route::VIEW('/', 'home');
+use App\Tour;
 
-Route::GET('/trips/{region?}/{trip?}', 'ItineraryController@index');
+Route::GET('/', function () {
+  $relevanttrips = Tour::all();
+  return view('home')->with([
+    'returnedtrips' => $relevanttrips
+    ]);
+});
+
+Route::GET('/trips/{region?}', 'ItineraryController@trip_search');
+
+Route::GET('/trips/{region?}/{trip?}', 'ItineraryController@itinerary_display');
 
 Route::GET('/env', function () {
     dump(config('app.name'));

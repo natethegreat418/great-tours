@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Tour;
+use App\Departure;
 
 class ItineraryController extends Controller
 {
@@ -11,10 +12,15 @@ class ItineraryController extends Controller
   {
     $region = $request->route()->parameters()['region'];
     $trip = $request->route()->parameters()['trip'];
-    // $itinerary = Tour::where('name', 'like', $trip)->get();
+    $gettour = Tour::where('name', '=', $trip)->get()->toArray();
+    $itinerary = $gettour[0];
+    $departures = Departure::where('tour_id', '=', $itinerary['id'])->where('status','=','Available')->get()->toArray();
+
     return view('trips')->with([
+      'trip' => $trip,
       'region' => $region,
-      'tripname' => $trip
+      'itinerary' => $itinerary,
+      'departures' => $departures
       ]);
   }
 

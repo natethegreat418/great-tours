@@ -1,0 +1,10 @@
+.trip-img {
+  max-width: 300px;
+  max-height: 300px;
+  margin: .5em;
+}
+
+.trip-item {
+  list-style: none;
+  display: inline;
+}

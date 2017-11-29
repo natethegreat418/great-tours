@@ -1,5 +1,9 @@
 @extends('layouts.master')
 
+@push('custom_css')
+  <link rel="stylesheet" href={{ URL::asset("css/homepage.css") }} >
+@endpush
+
 @section('content')
 <div class="container">
   <div class="row">
@@ -8,10 +12,10 @@
   <div class="row">
     <ul>
       @foreach ($returnedtrips as $trip)
-      <li><a href="/trips/{{ $trip->region }}/{{ $trip->name }}">{{ $trip->name }}</li>
+      <li class="trip-item"><a href="/trips/{{ $trip->region }}/{{ $trip->name }}"> <img class="trip-img" src="{{ $trip->tile_image }}"> </a></li>
       @endforeach
     </ul>
-</div>
+  </div>
 </div>
 
 

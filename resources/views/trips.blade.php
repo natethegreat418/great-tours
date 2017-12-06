@@ -23,11 +23,12 @@
       <p>{{ $itinerary['descr'] }}
     </div>
     <div class='row'>
-      <form method="POST" action="">
+      <form method="POST" action="/booking">
         {{ csrf_field() }}
 
         <div class="form-group">
             <label>When can you travel?</label>
+            <input name="tripid" type="hidden" value="{{ $itinerary['id'] }}">
             <select class="form-control" name="departure" required>
               @foreach ($departures as $departure)
                 <option value="{{ $departure['tour_date'] }}">{{ $departure['tour_date'] }}</option>

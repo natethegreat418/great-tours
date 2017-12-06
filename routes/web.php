@@ -31,6 +31,18 @@ Route::GET('/env', function () {
     dump(config('app.url'));
 });
 
+Route::POST('/booking', 'BookingController@index');
+
+Route::VIEW('/booking/details', 'details');
+
+Route::POST('/booking/details', 'BookingController@details');
+
+Route::VIEW('/booking/payment', 'payment');
+
+Route::POST('/booking/payment', 'BookingController@payment');
+
+Route::VIEW('/booking/confirmed', 'confirmed');
+
 Route::GET('/debug', function () {
 
     $debug = [

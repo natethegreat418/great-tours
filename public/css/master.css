@@ -8,3 +8,8 @@
   list-style: none;
   display: inline;
 }
+
+.mainnav {
+  background-color: lightblue;
+  font-style: bold;
+}

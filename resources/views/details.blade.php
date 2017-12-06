@@ -20,10 +20,10 @@
     <div class="form-group">
       <label>Traveler sex as indicated on passport</label>
       <div class="radio">
-        <label><input type="radio" name="chargender" value="Male" required>Male</label>
+        <label><input type="radio" name="sex" value="Male" required>Male</label>
       </div>
       <div class="radio">
-        <label><input type="radio" name="chargender" value="Female" required>Female</label>
+        <label><input type="radio" name="sex" value="Female" required>Female</label>
       </div>
     </div>
     <button type="submit" name='submit' class="btn btn-success">Advance to payment</button>

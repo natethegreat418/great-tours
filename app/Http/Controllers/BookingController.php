@@ -16,16 +16,36 @@ class BookingController extends Controller
         'tripid' => 'required'
       ]);
 
-      return redirect('/booking/details');
+      return redirect('/booking/details')->with([
+        $request['departure'] => session('departure')
+      ]);
     }
 
     public function details(Request $request)
     {
-      return redirect('/booking/payment');
+      $this->validate($request, [
+        'email' => 'required',
+        'firstname' => 'required',
+        'lastname' => 'required',
+        'sex' => 'required'
+      ]);
+
+      return redirect('/booking/payment')->with([
+        $request['email'] => session('email'),
+        $request['firstname'] => session('firstname'),
+        $request['lastname'] => session('lastname'),
+        $request['sex'] => session('sex')
+      ]);
     }
 
     public function payment(Request $request)
     {
+      $this->validate($request, [
+        'cardname' => 'required',
+        'cardnumber' => 'required',
+        'paymentzip' => 'required'
+      ]);
+      
       return redirect('/booking/confirmed');
     }
 }

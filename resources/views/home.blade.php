@@ -1,9 +1,5 @@
 @extends('layouts.master')
 
-@push('custom_css')
-  <link rel="stylesheet" href={{ URL::asset("css/homepage.css") }} >
-@endpush
-
 @section('content')
 <div class="container">
   <div class="row">

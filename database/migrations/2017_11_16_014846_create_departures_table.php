@@ -16,7 +16,9 @@ class CreateDeparturesTable extends Migration
         Schema::create('departures', function (Blueprint $table) {
           $table->increments('id');
           $table->timestamps();
-          $table->integer('tour_id');
+          $table->string('tour_code');
+          $table->integer('tour_id')->unsigned();
+          $table->foreign('tour_id')->references('id')->on('tours');
           $table->date('tour_date');
           $table->string('status');
           $table->float('price',8,2);

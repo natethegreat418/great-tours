@@ -24,7 +24,7 @@ class ToursTableSeeder extends Seeder
       Tour::insert([
         'created_at' => Carbon\Carbon::now()->subDays($count)->toDateTimeString(),
         'updated_at' => Carbon\Carbon::now()->subDays($count)->toDateTimeString(),
-        'code' => $tour[0],
+        'tour_code' => $tour[0],
         'tile_image' => $tour[1],
         'descr' => $tour[2],
         'region' => $tour[3],

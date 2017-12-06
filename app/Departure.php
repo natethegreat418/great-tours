@@ -11,4 +11,16 @@ class Departure extends Model
       'updated_at',
       'tour_date'
     ];
+
+    public function tour()
+    {
+      # Departure belongs to Tour
+      return $this->belongsTo('App\Tour');
+    }
+
+    public function booking()
+    {
+      # Tour has many Bookings
+      return $this->hasMany('App\Booking');
+    }
 }

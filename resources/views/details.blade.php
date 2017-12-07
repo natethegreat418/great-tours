@@ -2,6 +2,11 @@
 
 <div class="col-md-5">
   <h2>Step 1: Traveler Details</h2>
+
+  @if(session('alert'))
+    {{ session('alert') }}
+  @endif
+
   <form method="POST" action="/booking/details">
     {{ csrf_field() }}
 

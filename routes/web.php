@@ -13,6 +13,7 @@
 
 use App\Tour;
 
+// Homepage load, get all trips for display
 Route::GET('/', function () {
   $relevanttrips = Tour::all();
   return view('home')->with([
@@ -20,16 +21,13 @@ Route::GET('/', function () {
     ]);
 });
 
+// Itinerary routes
 Route::GET('/trips/{region?}', 'ItineraryController@trip_search');
 
 Route::GET('/trips/{region?}/{trip?}', 'ItineraryController@itinerary_display');
 
-Route::GET('/env', function () {
-    dump(config('app.name'));
-    dump(config('app.env'));
-    dump(config('app.debug'));
-    dump(config('app.url'));
-});
+
+// Booking routes
 
 Route::POST('/booking', 'BookingController@index');
 
@@ -42,6 +40,15 @@ Route::VIEW('/booking/payment', 'payment');
 Route::POST('/booking/payment', 'BookingController@payment');
 
 Route::VIEW('/booking/confirmed', 'confirmed');
+
+
+// Debugging routes
+Route::GET('/env', function () {
+    dump(config('app.name'));
+    dump(config('app.env'));
+    dump(config('app.debug'));
+    dump(config('app.url'));
+});
 
 Route::GET('/debug', function () {
 

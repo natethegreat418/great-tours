@@ -15,12 +15,12 @@
 
 @section('content')
 <div class="container">
-    @if(isset($itinerary))
+    @if(isset($tour))
     <div class="row">
-      <h1> {{ $itinerary['name'] }}</h1>
+      <h1> {{ $tour['name'] }}</h1>
     </div>
     <div class='row'>
-      <p>{{ $itinerary['descr'] }}
+      <p>{{ $tour['descr'] }}
     </div>
     <div class='row'>
       <form method="POST" action="/booking">
@@ -28,10 +28,10 @@
 
         <div class="form-group">
             <label>When can you travel?</label>
-            <input name="departureid" type="hidden" value="{{ $itinerary['id'] }}">
-            <select size="{{ $numberdepartures }}" class="form-control" name="departuredate" required>
+            <input name="tourid" type="hidden" value="{{ $tour['id'] }}">
+            <select size="{{ $numberdepartures }}" class="form-control" name="departureid" required>
               @foreach ($departures as $departure)
-                <option value="{{ $departure['tour_date'] }}">{{ $departure['tour_date'] }}</option>
+                <option value="{{ $departure['id'] }}">{{ $departure['tour_date'] }}</option>
               @endforeach
             </select>
         </div>

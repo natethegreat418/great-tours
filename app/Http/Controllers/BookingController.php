@@ -9,19 +9,19 @@ use App\Booking;
 
 class BookingController extends Controller
 {
+  // Begins booking process
     public function index(Request $request)
     {
       $this->validate($request, [
-        'departuredate' => 'required',
         'departureid' => 'required'
       ]);
 
-      $request->session()->put('departuredate', $request['departuredate']);
       $request->session()->put('departureid', $request['departureid']);
 
       return redirect('/booking/details');
     }
 
+    // Capture traveler details, incremental save of booking
     public function details(Request $request)
     {
       $this->validate($request, [
@@ -31,6 +31,14 @@ class BookingController extends Controller
         'sex' => 'required'
       ]);
 
+      // Check if user is already booked on this particular departure
+      if(Booking::where('user', '=', $request['email'])
+        ->where('departure_id', "=", session('departureid'))
+        ->where('status', "=", 'booked')
+        ->count() > 0) {
+          return back()->withInput()->with('alert', 'A user with that email address is already booked on this trip.');
+        }
+
       $request->session()->put('email', $request['email']);
       $request->session()->put('firstname', $request['firstname']);
       $request->session()->put('lastname', $request['lastname']);
@@ -38,6 +46,7 @@ class BookingController extends Controller
 
       $departure = Departure::where('id','=', session('departureid'))->first();
 
+      // Create the incomplete booking object
       $booking = new Booking;
       $booking->tour_code = $departure->tour_code;
       $booking->tour_id = $departure->tour_id;
@@ -58,6 +67,7 @@ class BookingController extends Controller
       return redirect('/booking/payment');
     }
 
+    // Collect and validate "payment", confirm booking
     public function payment(Request $request)
     {
       $this->validate($request, [
@@ -65,6 +75,12 @@ class BookingController extends Controller
         'cardnumber' => 'required',
         'paymentzip' => 'required'
       ]);
+
+      // Find the incomplete booking
+      $booking = Booking::where('id', '=', session('incompletebookingid'))->first();
+      // Finalize booking
+      $booking->status = 'booked';
+      $booking->save();
 
       return redirect('/booking/confirmed');
     }

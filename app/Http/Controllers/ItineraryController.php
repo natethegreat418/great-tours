@@ -8,24 +8,26 @@ use App\Departure;
 
 class ItineraryController extends Controller
 {
+  // Handles requests for specific itineraries
   public function itinerary_display(Request $request)
   {
     $region = $request->route()->parameters()['region'];
     $trip = $request->route()->parameters()['trip'];
     $gettour = Tour::where('name', '=', $trip)->get()->toArray();
-    $itinerary = $gettour[0];
-    $departures = Departure::where('tour_id', '=', $itinerary['id'])->where('status','=','Available')->get()->toArray();
-    $numberdepartures = Departure::where('tour_id', '=', $itinerary['id'])->where('status','=','Available')->count();
+    $tour = $gettour[0];
+    $departures = Departure::where('tour_id', '=', $tour['id'])->where('status','=','Available')->get()->toArray();
+    $numberdepartures = Departure::where('tour_id', '=', $tour['id'])->where('status','=','Available')->count();
 
     return view('trips')->with([
       'trip' => $trip,
       'region' => $region,
-      'itinerary' => $itinerary,
+      'tour' => $tour,
       'departures' => $departures,
       'numberdepartures' => $numberdepartures
       ]);
   }
 
+  // Handles requests for groups of tours by region
   public function trip_search(Request $request)
   {
     if(isset($request->route()->parameters()['region'])) {

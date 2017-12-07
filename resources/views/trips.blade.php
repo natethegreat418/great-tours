@@ -28,8 +28,8 @@
 
         <div class="form-group">
             <label>When can you travel?</label>
-            <input name="tripid" type="hidden" value="{{ $itinerary['id'] }}">
-            <select class="form-control" name="departure" required>
+            <input name="departureid" type="hidden" value="{{ $itinerary['id'] }}">
+            <select size="{{ $numberdepartures }}" class="form-control" name="departuredate" required>
               @foreach ($departures as $departure)
                 <option value="{{ $departure['tour_date'] }}">{{ $departure['tour_date'] }}</option>
               @endforeach

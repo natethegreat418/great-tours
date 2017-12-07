@@ -15,12 +15,14 @@ class ItineraryController extends Controller
     $gettour = Tour::where('name', '=', $trip)->get()->toArray();
     $itinerary = $gettour[0];
     $departures = Departure::where('tour_id', '=', $itinerary['id'])->where('status','=','Available')->get()->toArray();
+    $numberdepartures = Departure::where('tour_id', '=', $itinerary['id'])->where('status','=','Available')->count();
 
     return view('trips')->with([
       'trip' => $trip,
       'region' => $region,
       'itinerary' => $itinerary,
-      'departures' => $departures
+      'departures' => $departures,
+      'numberdepartures' => $numberdepartures
       ]);
   }
 

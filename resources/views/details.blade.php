@@ -1,7 +1,7 @@
 @extends('layouts.booking.master')
 
 <div class="col-md-5">
-  <h1>Step 1: Provide your traveler details</h1>
+  <h2>Step 1: Traveler Details</h2>
   <form method="POST" action="/booking/details">
     {{ csrf_field() }}
 

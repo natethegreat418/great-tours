@@ -12,13 +12,14 @@ class BookingController extends Controller
     public function index(Request $request)
     {
       $this->validate($request, [
-        'departure' => 'required',
-        'tripid' => 'required'
+        'departuredate' => 'required',
+        'departureid' => 'required'
       ]);
 
-      return redirect('/booking/details')->with([
-        $request['departure'] => session('departure')
-      ]);
+      $request->session()->put('departuredate', $request['departuredate']);
+      $request->session()->put('departureid', $request['departureid']);
+
+      return redirect('/booking/details');
     }
 
     public function details(Request $request)
@@ -30,12 +31,31 @@ class BookingController extends Controller
         'sex' => 'required'
       ]);
 
-      return redirect('/booking/payment')->with([
-        $request['email'] => session('email'),
-        $request['firstname'] => session('firstname'),
-        $request['lastname'] => session('lastname'),
-        $request['sex'] => session('sex')
-      ]);
+      $request->session()->put('email', $request['email']);
+      $request->session()->put('firstname', $request['firstname']);
+      $request->session()->put('lastname', $request['lastname']);
+      $request->session()->put('sex', $request['sex']);
+
+      $departure = Departure::where('id','=', session('departureid'))->first();
+
+      $booking = new Booking;
+      $booking->tour_code = $departure->tour_code;
+      $booking->tour_id = $departure->tour_id;
+      $booking->departure_id = $departure->id;
+      $booking->user = $request['email'];
+      $booking->status = 'incomplete';
+      $booking->save();
+
+      $request->session()->put('price', $departure->price);
+
+      $incompletebookingid = Booking::where('user', '=', $request['email'])
+        ->where('departure_id', '=', $departure->id)
+        ->pluck('id')
+        ->first();
+
+      $request->session()->put('incompletebookingid', $incompletebookingid);
+
+      return redirect('/booking/payment');
     }
 
     public function payment(Request $request)
@@ -45,7 +65,7 @@ class BookingController extends Controller
         'cardnumber' => 'required',
         'paymentzip' => 'required'
       ]);
-      
+
       return redirect('/booking/confirmed');
     }
 }

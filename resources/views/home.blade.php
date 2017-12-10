@@ -3,14 +3,15 @@
 @section('content')
 <div class="container">
   <div class="row">
-    <h1>We are Great-Tours</h1>
+    <h1>Welcome to Great Tours</h1>
   </div>
   <div class="row">
-    <ul>
       @foreach ($returnedtrips as $trip)
-      <li class="trip-item"><a href="/trips/{{ $trip->region }}/{{ $trip->name }}"> <img class="trip-img" src="{{ $trip->tile_image }}"> </a></li>
+      <div class="col-sm trip-tile">
+        <a href="/trips/{{ $trip->region }}/{{ $trip->name }}"> <img class="trip-img" src="/images/{{ $trip->tile_image }}"> </a></li>
+        <h5>{{ $trip->name }}</h5>
+      </div>
       @endforeach
-    </ul>
   </div>
 </div>
 

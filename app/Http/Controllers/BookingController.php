@@ -55,8 +55,6 @@ class BookingController extends Controller
       $booking->status = 'incomplete';
       $booking->save();
 
-      $request->session()->put('price', $departure->price);
-
       $incompletebookingid = Booking::where('user', '=', $request['email'])
         ->where('departure_id', '=', $departure->id)
         ->pluck('id')
@@ -64,7 +62,9 @@ class BookingController extends Controller
 
       $request->session()->put('incompletebookingid', $incompletebookingid);
 
-      return redirect('/booking/payment');
+      return redirect('/booking/payment')->with([
+        'price' => $departure->price
+        ]);
     }
 
     // Collect and validate "payment", confirm booking

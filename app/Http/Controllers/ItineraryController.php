@@ -18,7 +18,7 @@ class ItineraryController extends Controller
     $departures = Departure::where('tour_id', '=', $tour['id'])->where('status','=','Available')->get()->toArray();
     $numberdepartures = Departure::where('tour_id', '=', $tour['id'])->where('status','=','Available')->count();
 
-    return view('trips')->with([
+    return view('trip')->with([
       'trip' => $trip,
       'region' => $region,
       'tour' => $tour,
@@ -44,7 +44,7 @@ class ItineraryController extends Controller
       $relevanttrips = Tour::all();
       $region = 'All';
     }
-    return view('trips')->with([
+    return view('region')->with([
       'region' => $region,
       'returnedtrips' => $relevanttrips
       ]);

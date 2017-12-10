@@ -1,16 +1,12 @@
 .trip-img {
   max-width: 300px;
   max-height: 300px;
-  margin: .5em;
+  margin-bottom: .25em;
 }
 
-.trip-item {
-  list-style: none;
-  display: inline-block;
-}
-
-.trip-item:after {
-  pointer-events: none;
+.trip-tile {
+  margin-top: 1em;
+  margin-bottom: 1em;
 }
 
 .mainnav {

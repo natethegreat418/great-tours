@@ -17,4 +17,9 @@ class Tour extends Model
     # Tour has many DeparturesTableSeeder
     return $this->hasMany('App\Booking');
   }
+
+  public function tags()
+  {
+    return $this->belongsToMany('App\Tag')->withTimestamps();
+  }
 }

@@ -16,6 +16,8 @@ class BookingController extends Controller
         'departureid' => 'required'
       ]);
 
+      $departure = Departure::with('tour')->where('id','=', session('departureid'))->first();
+
       $request->session()->put('departureid', $request['departureid']);
 
       return redirect('/booking/details');
@@ -31,6 +33,11 @@ class BookingController extends Controller
         'sex' => 'required'
       ]);
 
+      $request->session()->put('email', $request['email']);
+      $request->session()->put('firstname', $request['firstname']);
+      $request->session()->put('lastname', $request['lastname']);
+      $request->session()->put('sex', $request['sex']);
+
       // Check if user is already booked on this particular departure
       if(Booking::where('user', '=', $request['email'])
         ->where('departure_id', "=", session('departureid'))
@@ -39,10 +46,24 @@ class BookingController extends Controller
           return back()->withInput()->with('alert', 'A user with that email address is already booked on this trip.');
         }
 
-      $request->session()->put('email', $request['email']);
-      $request->session()->put('firstname', $request['firstname']);
-      $request->session()->put('lastname', $request['lastname']);
-      $request->session()->put('sex', $request['sex']);
+      // Check if user already has an incomplete transaction for this departure
+      elseif (Booking::where('user', '=', $request['email'])
+        ->where('departure_id', "=", session('departureid'))
+        ->where('status', "=", 'incomplete')
+        ->count() > 0) {
+
+          // Get that incomplete booking and return it to view
+          $incompletebookingid = Booking::where('user', '=', $request['email'])
+            ->where('departure_id', '=', session('departureid'))
+            ->pluck('id')
+            ->first();
+
+          $request->session()->put('incompletebookingid', $incompletebookingid);
+
+          return redirect('/booking/payment')->with([
+            'price' => $departure->price
+            ]);
+        }
 
       $departure = Departure::where('id','=', session('departureid'))->first();
 
@@ -87,6 +108,8 @@ class BookingController extends Controller
       $departure = Departure::where('id', '=', $booking->departure_id)->first();
       $departure->currently_booked = ($departure->currently_booked)+1;
       $departure->save();
+
+      $request->session()->flush();
 
       return redirect('/booking/confirmed');
     }

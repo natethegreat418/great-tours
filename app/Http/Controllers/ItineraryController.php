@@ -6,15 +6,34 @@ use Illuminate\Http\Request;
 use App\Tour;
 use App\Departure;
 use App\Tag;
+use App\Booking;
 
 class ItineraryController extends Controller
 {
-  // Handles homepage and tags logic
+  // Handles homepage requests
   public function index()
   {
     $relevanttrips = Tour::all();
+    $recentlyquotedtrip = Departure::with('tour')
+      ->where('id','=', session('departureid'))
+      ->first();
+
+    if(null !== session('incompletebookingid')) {
+      $incompletebooking = Booking::with('tour')
+        ->where('id','=', session('incompletebookingid'))
+        ->orderBy('updated_at', 'desc')
+        ->first();
+
+      return view('home')->with([
+        'returnedtrips' => $relevanttrips,
+        'incompletebooking' => $incompletebooking,
+        'recentlyquotedtrip' => $recentlyquotedtrip
+        ]);
+    }
+
     return view('home')->with([
-      'returnedtrips' => $relevanttrips
+      'returnedtrips' => $relevanttrips,
+      'recentlyquotedtrip' => $recentlyquotedtrip
       ]);
   }
 

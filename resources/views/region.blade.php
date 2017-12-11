@@ -6,7 +6,7 @@
 
 @push('breadcrumb')
   @if (isset($region))
-    <a class="nav-link" href="/trips/{{ $region }}">{{ $region }} /</a>
+    <a class="nav-link" href="/trips/{{ $region }}">{{ $region }} </a>
   @endif
   @if (isset($trip))
     <a class="nav-link" href="/trips/{{ $region }}/{{ $trip }}">{{ $trip }}<a/>

@@ -20,15 +20,15 @@
 
     <div class="form-group">
       <label>Email address (to send you pre-departure information)</label>
-      <input type="email" name="email" class="form-control" value='' required>
+      <input type="email" name="email" class="form-control" value='{{ session('email') }}' required>
     </div>
     <div class="form-group">
       <label>Traveler First name as indicated on passport</label>
-      <input type="text" name="firstname" pattern=".{3,}" title="Please enter a minimum of 3 characters" class="form-control" value='' required>
+      <input type="text" name="firstname" pattern=".{2,}" title="Please enter a minimum of 2 characters" class="form-control" value='{{ session('firstname') }}' required>
     </div>
     <div class="form-group">
       <label> Traveler Last name as indicated on passport</label>
-      <input type="text" name="lastname" pattern=".{3,}" title="Please enter a minimum of 3 characters" class="form-control" value='' required>
+      <input type="text" name="lastname" pattern=".{2,}" title="Please enter a minimum of 2 characters" class="form-control" value='{{ session('lastname') }}' required>
     </div>
     <div class="form-group">
       <label>Traveler sex as indicated on passport</label>

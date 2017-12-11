@@ -12,11 +12,9 @@
     @stack('custom_css')
   </head>
   <body>
-    <nav class="navbar mainnav navbar-light bg-faded">
+    <nav class="nav mainnav navbar-light bg-faded">
       <a class="navbar-brand" href="/">Great Tours</a>
-      <ul class="navbar-nav mr-auto">
         @stack('breadcrumb')
-      </ul>
     </nav>
 
     @yield('content')

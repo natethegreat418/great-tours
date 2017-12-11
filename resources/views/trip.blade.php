@@ -6,10 +6,10 @@
 
 @push('breadcrumb')
   @if (isset($region))
-    <li class="nav-item"><a class="nav-link" href="/trips/{{ $region }}">{{ $region }} ></a></li>
+    <a class="nav-link" href="/trips/{{ $region }}">{{ $region }} /</a>
   @endif
   @if (isset($trip))
-    <li class="nav-item"><a class="nav-link" href="/trips/{{ $region }}/{{ $trip }}">{{ $trip }}<a/></li>
+    <a class="nav-link" href="/trips/{{ $region }}/{{ $trip }}">{{ $trip }}<a/>
   @endif
 @endpush
 
@@ -33,10 +33,10 @@
                   <label><input class="departure" type="radio" name="departureid" value="{{ $departure['id'] }}" required>{{ $departure['tour_date'] }}</label>
                 </div>
               @endforeach
-      <button type="submit" name='submit' class="btn btn-success">Book Now</button>
+        </div>
+        <button type="submit" name='submit' class="btn btn-success">Book Now</button>
       </form>
     </div>
-  </div>
 </div>
 
 @push('javascript')

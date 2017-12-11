@@ -15,5 +15,5 @@
 }
 
 .nav-item {
-  display: inline;
+  display: inline-block;
 }

@@ -1,5 +1,13 @@
 @extends('layouts.booking.master')
 
+@push('breadcrumb')
+<li class="nav-item"><a class="nav-link" href="">Details ></a></li>
+<li class="nav-item"><a class="nav-link" href="">Payment ></a></li>
+<li class="nav-item"><a class="nav-link disabled" href="">Confirmed ></a></li>
+@endpush
+
+@section('content')
+
 <div class="col-md-5">
 <h2>Step 2: Payment Details</h2>
 
@@ -26,3 +34,5 @@
     <button type="submit" name='submit' class="btn btn-success">Confirm and Get Traveling!</button>
   </form>
 </div>
+
+@endsection

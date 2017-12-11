@@ -16,6 +16,9 @@ class ToursTableSeeder extends Seeder
       ['GTI', 'GTI.jpg', 'Drink Guinness straight from the source', 'Europe', 'Grand-Tour-of-Ireland'],
       ['CRA', 'CRA.jpg', 'Discover a lost world...', 'Central-America', 'Costa-Rican-Adventure'],
       ['LPB', 'LPB.jpg', 'Pay too much for a trip in the Eye', 'Europe', 'London-Paris-Barcelona'],
+      ['WBI', 'WBI.jpg', 'Pretend to be Bill Bryson and walk around the Isles', 'Europe', 'Walk-the-British-Isles'],
+      ['EAA', 'EAA.jpg', 'Trek through the mountains of Switzerland and Germany', 'Europe', 'European-Alps-Adventure'],
+      ['BBB','BBB.jpg', 'Climb Mayan ruins and snorkel amongst the reefs', 'Central-America', 'Belize-Beaches-and-Beyond']
     ];
 
     $count = count($tours);

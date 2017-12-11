@@ -18,7 +18,10 @@ class TagTourTableSeeder extends Seeder
       $tours =[
           'GTI' => ['Europe', 'Immersion'],
           'CRA' => ['Central America', 'Active', 'Beaches'],
-          'LPB' => ['Europe', 'Budget', 'Highlights']
+          'LPB' => ['Europe', 'Budget', 'Highlights'],
+          'WBI' => ['Europe','Active','Immersion'],
+          'BBB' => ['Central America', 'Active', 'Beaches'],
+          'EAA' => ['Europe','Active']
       ];
 
       foreach ($tours as $code => $tags) {
@@ -28,7 +31,6 @@ class TagTourTableSeeder extends Seeder
 
           foreach ($tags as $tagName) {
               $tag = Tag::where('name', 'LIKE', $tagName)->first();
-
               # Connect this tag to this tour
               $tour->tags()->save($tag);
           }

@@ -13,13 +13,8 @@
 
 use App\Tour;
 
-// Homepage load, get all trips for display
-Route::GET('/', function () {
-  $relevanttrips = Tour::all();
-  return view('home')->with([
-    'returnedtrips' => $relevanttrips
-    ]);
-});
+// Homepage load
+Route::GET('/', 'ItineraryController@index');
 
 // Itinerary routes
 Route::GET('/trips/{region?}', 'ItineraryController@trip_search');

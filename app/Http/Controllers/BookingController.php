@@ -76,11 +76,17 @@ class BookingController extends Controller
         'paymentzip' => 'required'
       ]);
 
-      // Find the incomplete booking
+      // Find incomplete booking
       $booking = Booking::where('id', '=', session('incompletebookingid'))->first();
-      // Finalize booking
+
+      // Update and finalize booking
       $booking->status = 'booked';
       $booking->save();
+
+      // Update number travelers on departure
+      $departure = Departure::where('id', '=', $booking->departure_id)->first();
+      $departure->currently_booked = ($departure->currently_booked)+1;
+      $departure->save();
 
       return redirect('/booking/confirmed');
     }

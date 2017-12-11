@@ -5,9 +5,19 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Tour;
 use App\Departure;
+use App\Tag;
 
 class ItineraryController extends Controller
 {
+  // Handles homepage and tags logic
+  public function index()
+  {
+    $relevanttrips = Tour::all();
+    return view('home')->with([
+      'returnedtrips' => $relevanttrips
+      ]);
+  }
+
   // Handles requests for specific itineraries
   public function itinerary_display(Request $request)
   {

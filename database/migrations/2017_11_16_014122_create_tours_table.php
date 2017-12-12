@@ -21,6 +21,7 @@ class CreateToursTable extends Migration
             $table->longText('descr');
             $table->string('region');
             $table->string('name');
+            $table->string('url_path');
         });
     }
 

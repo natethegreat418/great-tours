@@ -1,5 +1,10 @@
 @extends('layouts.master')
 
+@push('custom_css')
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.1/assets/owl.carousel.min.css"/>
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.1/assets/owl.theme.default.min.css"/>
+@endpush
+
 @section('content')
 <div class="container">
   <div class="row">
@@ -7,29 +12,54 @@
   </div>
 
   @if(isset($incompletebooking))
-    <div class="last-action">
-      <h6>Did you forget something? Get traveling on <a href="/booking/details">{{ $incompletebooking->tour->name }} {{ $incompletebooking->tour_date }}</a></h6>
-    </div>
+  <div class="last-action">
+    <h6>Did you forget something? Get traveling on <a href="/booking/details">{{ $incompletebooking->tour->name }} {{ $incompletebooking->tour_date }}</a></h6>
+  </div>
   @elseif(isset($recentlyquotedtrip))
-    <div class="last-action">
-      <h6>Learn more about <a href="/trips/{{ $recentlyquotedtrip->tour->region }}/{{ $recentlyquotedtrip->tour->name }}">{{ $recentlyquotedtrip->tour->name }}</a></h6>
-    </div>
+  <div class="last-action">
+    <h6>Learn more about <a href="/trips/{{ $recentlyquotedtrip->tour->region }}/{{ $recentlyquotedtrip->tour->name }}">{{ $recentlyquotedtrip->tour->name }}</a></h6>
+  </div>
   @endif
 
-  <div class="row">
-      @foreach ($returnedtrips as $trip)
-      <div class="col-sm trip-tile">
-        <a href="/trips/{{ $trip->region }}/{{ $trip->name }}"> <img class="trip-img" src="/images/{{ $trip->tile_image }}"> </a>
-        <h5>{{ $trip->name }}</h5>
-        @foreach ($trip->tags as $tag)
-          <h6>{{ $tag->name }}</h6>
-        @endforeach
+  @foreach ($displaytours as $group)
+    <div class="row">
+      <h4> {{ $group->name }} Trips</h4>
+    </div>
+      <div class="row">
+        <div class="owl-carousel">
+              @foreach ($group->tours as $tour)
+              <div class="item">
+                <a href="/trips/{{ $tour->region }}/{{ $tour->url_path }}"> <img class="carousel-img" src="/images/{{ $tour->tile_image }}"></img> </a>
+                <h5>{{ $tour->name }}</h5>
+              </div>
+              @endforeach
+        </div>
       </div>
-      @endforeach
-  </div>
+  @endforeach
 </div>
 
-@push('javascript')
+  @push('javascript')
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.1/owl.carousel.min.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function(){
+      $(".owl-carousel").owlCarousel({
+        loop: true,
+        nav: true,
+        lazyLoad: true,
+        responsive: {
+          0: {
+            items: 1
+          },
+          600: {
+            items: 2
+          },
+          1000: {
+            items: 3
+          }
+        }
+      });
+    });
+</script>
 
 @endpush
 

@@ -13,7 +13,8 @@ class ItineraryController extends Controller
   // Handles homepage requests
   public function index()
   {
-    $relevanttrips = Tour::all();
+    $displaytours = Tag::with('tours')->where('display','=',1)->get();
+
     $recentlyquotedtrip = Departure::with('tour')
       ->where('id','=', session('departureid'))
       ->first();
@@ -25,24 +26,52 @@ class ItineraryController extends Controller
         ->first();
 
       return view('home')->with([
-        'returnedtrips' => $relevanttrips,
+        'displaytours' => $displaytours,
         'incompletebooking' => $incompletebooking,
         'recentlyquotedtrip' => $recentlyquotedtrip
         ]);
     }
 
     return view('home')->with([
+      'displaytours' => $displaytours,
+      'recentlyquotedtrip' => $recentlyquotedtrip
+      ]);
+  }
+
+  // Handles requests for all itineraries
+  public function all_trips()
+  {
+    $relevanttrips = Tour::all();
+    $recentlyquotedtrip = Departure::with('tour')
+      ->where('id','=', session('departureid'))
+      ->first();
+
+    if(null !== session('incompletebookingid')) {
+      $incompletebooking = Booking::with('tour')
+        ->where('id','=', session('incompletebookingid'))
+        ->orderBy('updated_at', 'desc')
+        ->first();
+
+      return view('explore')->with([
+        'returnedtrips' => $relevanttrips,
+        'incompletebooking' => $incompletebooking,
+        'recentlyquotedtrip' => $recentlyquotedtrip
+        ]);
+    }
+
+    return view('explore')->with([
       'returnedtrips' => $relevanttrips,
       'recentlyquotedtrip' => $recentlyquotedtrip
       ]);
   }
+
 
   // Handles requests for specific itineraries
   public function itinerary_display(Request $request)
   {
     $region = $request->route()->parameters()['region'];
     $trip = $request->route()->parameters()['trip'];
-    $gettour = Tour::where('name', '=', $trip)->get()->toArray();
+    $gettour = Tour::where('url_path', '=', $trip)->get()->toArray();
     $tour = $gettour[0];
     $departures = Departure::where('tour_id', '=', $tour['id'])->where('status','=','Available')->get()->toArray();
     $numberdepartures = Departure::where('tour_id', '=', $tour['id'])->where('status','=','Available')->count();

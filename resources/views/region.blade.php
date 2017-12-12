@@ -1,9 +1,5 @@
 @extends('layouts.master')
 
-@push('custom_css')
-  <link rel="stylesheet" href={{ URL::asset("css/homepage.css") }} >
-@endpush
-
 @push('breadcrumb')
   @if (isset($region))
     <a class="nav-link" href="/trips/{{ $region }}">{{ $region }} </a>
@@ -20,10 +16,12 @@
 </div>
   <div class="row">
     @foreach ($returnedtrips as $trip)
+    <div class="col-sm-6 col-md-4 col-lg-4 col-xl-3">
     <div class="col-sm trip-tile">
-      <a href="/trips/{{ $trip->region }}/{{ $trip->name }}"> <img class="trip-img" src="/images/{{ $trip->tile_image }}"> </a></li>
+      <a href="/trips/{{ $trip->region }}/{{ $trip->url_path }}"> <img class="img-fluid" src="/images/{{ $trip->tile_image }}"> </a></li>
       <h5>{{ $trip->name }}</h5>
     </div>
+  </div>
     @endforeach
 </div>
 </div>

@@ -17,10 +17,11 @@ use App\Tour;
 Route::GET('/', 'ItineraryController@index');
 
 // Itinerary routes
+Route::GET('/trips/explore', 'ItineraryController@all_trips');
+
 Route::GET('/trips/{region?}', 'ItineraryController@trip_search');
 
 Route::GET('/trips/{region?}/{trip?}', 'ItineraryController@itinerary_display');
-
 
 // Booking routes
 

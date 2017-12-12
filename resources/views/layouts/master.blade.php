@@ -14,6 +14,7 @@
   <body>
     <nav class="nav mainnav navbar-light bg-faded">
       <a class="navbar-brand" href="/">Great Tours</a>
+      <a class="nav-link" href="/trips/explore">All Trips</a>
         @stack('breadcrumb')
     </nav>
 

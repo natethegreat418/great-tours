@@ -1,9 +1,9 @@
 @extends('layouts.booking.master')
 
 @push('breadcrumb')
-<li class="nav-item"><a class="nav-link booking-nav-done disabled" href="">Details</a></li>
-<li class="nav-item"><a class="nav-link booking-nav-done disabled" href="">Payment</a></li>
-<li class="nav-item"><a class="nav-link booking-nav-done" href="">Confirmed</a></li>
+<a class="nav-link booking-nav-done disabled" href="">Details</a>
+<a class="nav-link booking-nav-done disabled" href="">Payment</a>
+<a class="nav-link booking-nav-done" href="">Confirmed</a>
 @endpush
 
 @section('content')

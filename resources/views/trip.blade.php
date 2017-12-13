@@ -17,7 +17,7 @@
       <h1> {{ $tour['name'] }}</h1>
     </div>
     <div class='row'>
-      <p>{{ $tour['descr'] }}
+      <p>{{ $tour['descr'] }}</p>
     </div>
     <div class='row'>
       <form method="POST" action="/booking">

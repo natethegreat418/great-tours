@@ -95,7 +95,8 @@ class BookingController extends Controller
     {
       $this->validate($request, [
         'name' => 'required',
-        'number' => 'required'
+        'number' => 'required',
+        'expiry' => 'required'
       ]);
 
       // Find incomplete booking

@@ -1,9 +1,9 @@
 @extends('layouts.booking.master')
 
 @push('breadcrumb')
-<li class="nav-item"><a class="nav-link booking-nav-done" href="/booking/details">Details</a></li>
-<li class="nav-item"><a class="nav-link booking-nav-current" href="">Payment</a></li>
-<li class="nav-item"><a class="nav-link disabled" href="">Confirmed ></a></li>
+<a class="nav-link booking-nav-done" href="/booking/details">Details</a>
+<a class="nav-link booking-nav-current" href="">Payment</a>
+<a class="nav-link disabled" href="">Confirmed</a>
 @endpush
 
 @section('content')
@@ -23,26 +23,32 @@
   <p>Departing on {{ session('departuredate') }} </p>
 </div>
 <div class="row">
-  <p>Total cost: {{ session('price') }} </p>
+  <p>Total cost: $ {{ session('price') }} </p>
 </div>
 <div class="row">
+<div class="col-md-4">
   <div class='card-wrapper'></div>
 </div>
-<div class="row">
+<div class="row col-md-4">
   <form method="POST" action="/booking/payment">
     {{ csrf_field() }}
 
+    <div class="form-group">
+      <label>Credit Card Number</label>
+      <input type="text" name="number" pattern=".{19,}" title="Please enter a valid card number" class="form-control" value='' required>
+    </div>
     <div class="form-group">
       <label>Full Name on Card</label>
       <input type="text" name="name" pattern=".{3,}" title="Please enter a minimum of 3 characters" class="form-control" value='' required>
     </div>
     <div class="form-group">
-      <label>Credit Card Number</label>
-      <input type="text" name="number" pattern=".{19,}" title="Please enter a valid card number" class="form-control" value='' required>
+      <label>Card Expiration Date</label>
+      <input type="month" name="expiry" class="form-control" value='' required>
     </div>
     <input name="bookingid" type="hidden" value="{{ session('incompletebookingid') }}">
     <button type="submit" name='submit' class="btn btn-success">Confirm and Get Traveling!</button>
   </form>
+</div>
 </div>
 </div>
 

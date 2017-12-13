@@ -99,6 +99,11 @@ class BookingController extends Controller
         'expiry' => 'required'
       ]);
 
+      // Check that expiration on card is greater than today
+      if($request->expiry < getdate()) {
+        return redirect('booking/payment')->with('alert', 'That card is expired. Please enter a valid payment method.');
+      }
+
       // Find incomplete booking
       $booking = Booking::where('id', '=', session('incompletebookingid'))->first();
 

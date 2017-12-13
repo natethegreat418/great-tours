@@ -13,7 +13,9 @@
   <h2>Step 1: Traveler Details</h2>
 
   @if(session('alert'))
+  <div class="alert">
     {{ session('alert') }}
+  </div>
   @endif
 </div>
 <div class="row">

@@ -7,7 +7,9 @@
   </div>
 
   @if(session('alert'))
-  {{ session('alert') }}
+    <div class="alert">
+      {{ session('alert') }}
+    </div>
   @endif
 
   @if(isset($incompletebooking))

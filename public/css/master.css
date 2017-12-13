@@ -18,6 +18,10 @@
   height: 250px;
 }
 
+.alert {
+  background-color: red;
+}
+
 .nav-link {
   color: black;
 }

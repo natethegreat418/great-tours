@@ -39,13 +39,7 @@
 </div>
 
 @push('javascript')
-  <script>
-    $(document).ready(function() {
-      $(".departure").click(function(){
-        console.log({{ $departure['price'] }})
-      });
-    });
-  </script>
+
 @endpush
 
 @endsection

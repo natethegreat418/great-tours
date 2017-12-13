@@ -11,6 +11,6 @@ class AlertsTableSeeder extends Seeder
      */
     public function run()
     {
-        //
+
     }
 }

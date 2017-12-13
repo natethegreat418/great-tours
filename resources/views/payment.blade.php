@@ -8,13 +8,24 @@
 
 @section('content')
 
-<div class="col-md-5">
+<div class="container">
+<div class="row">
 <h2>Step 2: Payment Details</h2>
+</div>
 
-<h3>Purchase Details</h3>
-<p>{{ session('departuredate') }} </p>
-<p>{{ session('price') }} </p>
-
+<div class="row">
+  <h3>Purchase Summary</h3>
+</div>
+<div class="row">
+<p>You are reserving a spot on {{ session('tourname') }}</p>
+</div>
+<div class="row">
+  <p>Departing on {{ session('departuredate') }} </p>
+</div>
+<div class="row">
+  <p>Total cost: {{ session('price') }} </p>
+</div>
+<div class="row">
   <form method="POST" action="/booking/payment">
     {{ csrf_field() }}
 
@@ -33,6 +44,8 @@
     <input name="bookingid" type="hidden" value="{{ session('incompletebookingid') }}">
     <button type="submit" name='submit' class="btn btn-success">Confirm and Get Traveling!</button>
   </form>
+</div>
+</div>
 </div>
 
 @endsection

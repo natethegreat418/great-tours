@@ -8,13 +8,15 @@
 
 @section('content')
 
-<div class="col-md-5">
+<div class="container">
+<div class="row">
   <h2>Step 1: Traveler Details</h2>
 
   @if(session('alert'))
     {{ session('alert') }}
   @endif
-
+</div>
+<div class="row">
   <form method="POST" action="/booking/details">
     {{ csrf_field() }}
 
@@ -33,14 +35,15 @@
     <div class="form-group">
       <label>Traveler sex as indicated on passport</label>
       <div class="radio">
-        <label><input type="radio" name="sex" value="Male" required>Male</label>
+        <label><input type="radio" name="sex" value="Male" @if(session('sex')==="Male") checked @endif required >Male</label>
       </div>
       <div class="radio">
-        <label><input type="radio" name="sex" value="Female" required>Female</label>
+        <label><input type="radio" name="sex" value="Female" @if(session('sex')==="Female") checked @endif required>Female</label>
       </div>
     </div>
     <button type="submit" name='submit' class="btn btn-success">Advance to payment</button>
   </form>
+</div>
 </div>
 
 @endsection

@@ -14,10 +14,11 @@
   @if(isset($incompletebooking))
   <div class="last-action">
     <h6>Did you forget something? Get traveling on <a href="/booking/details">{{ $incompletebooking->tour->name }} {{ $incompletebooking->tour_date }}</a></h6>
+    <h6>Or forget this <a href="/booking/forget">pending reservation</a>
   </div>
   @elseif(isset($recentlyquotedtrip))
   <div class="last-action">
-    <h6>Learn more about <a href="/trips/{{ $recentlyquotedtrip->tour->region }}/{{ $recentlyquotedtrip->tour->name }}">{{ $recentlyquotedtrip->tour->name }}</a></h6>
+    <h6>You recently quoted <a href="/trips/{{ $recentlyquotedtrip->tour->region }}/{{ $recentlyquotedtrip->tour->url_path }}">{{ $recentlyquotedtrip->tour->name }}</a></h6>
   </div>
   @endif
 

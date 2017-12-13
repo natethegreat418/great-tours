@@ -52,22 +52,23 @@ class BookingController extends Controller
         ->where('status', "=", 'incomplete')
         ->count() > 0) {
 
-          // Get that incomplete booking and return it to view
-          $incompletebookingid = Booking::where('user', '=', $request['email'])
+          // Get that incomplete booking and put it in session
+          $incompletebooking = Booking::with('tour','departure')->where('user', '=', $request['email'])
             ->where('departure_id', '=', session('departureid'))
-            ->pluck('id')
             ->first();
 
-          $request->session()->put('incompletebookingid', $incompletebookingid);
+          // Proceed to payment with purchase summary
+          $request->session()->put('incompletebookingid', $incompletebooking->id);
+          $request->session()->put('price', $incompletebooking->departure->price);
+          $request->session()->put('departuredate', $incompletebooking->departure->tour_date);
+          $request->session()->put('tourname', $incompletebooking->tour->name);
 
-          return redirect('/booking/payment')->with([
-            'price' => $departure->price
-            ]);
+          return redirect('/booking/payment');
         }
 
+      // Existing partial booking doesn't exist, create one
       $departure = Departure::where('id','=', session('departureid'))->first();
 
-      // Create the incomplete booking object
       $booking = new Booking;
       $booking->tour_code = $departure->tour_code;
       $booking->tour_id = $departure->tour_id;
@@ -76,19 +77,20 @@ class BookingController extends Controller
       $booking->status = 'incomplete';
       $booking->save();
 
-      $incompletebookingid = Booking::where('user', '=', $request['email'])
+      $incompletebooking = Booking::with('tour','departure')->where('user', '=', $request['email'])
         ->where('departure_id', '=', $departure->id)
-        ->pluck('id')
         ->first();
 
-      $request->session()->put('incompletebookingid', $incompletebookingid);
+        // Proceed to payment with purchase summary
+        $request->session()->put('incompletebookingid', $incompletebooking->id);
+        $request->session()->put('price', $incompletebooking->departure->price);
+        $request->session()->put('departuredate', $incompletebooking->departure->tour_date);
+        $request->session()->put('tourname', $incompletebooking->tour->name);
 
-      return redirect('/booking/payment')->with([
-        'price' => $departure->price
-        ]);
+      return redirect('/booking/payment');
     }
 
-    // Collect and validate "payment", confirm booking
+    // Collect and validate "payment", update ("confirm") booking
     public function payment(Request $request)
     {
       $this->validate($request, [
@@ -112,5 +114,23 @@ class BookingController extends Controller
       $request->session()->flush();
 
       return redirect('/booking/confirmed');
+    }
+
+    public function forget(Request $request)
+    {
+      // Delete the incomplete booking in session
+      Booking::destroy(session('incompletebookingid'));
+
+      // Forget related booking data in session
+      $request->session()->forget('incompletebookingid');
+      $request->session()->forget('price');
+      $request->session()->forget('departuredate');
+      $request->session()->forget('tourname');
+      $request->session()->forget('firstname');
+      $request->session()->forget('lastname');
+      $request->session()->forget('sex');
+      $request->session()->forget('departureid');
+
+      return redirect('/');
     }
 }

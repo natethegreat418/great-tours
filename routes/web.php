@@ -37,6 +37,8 @@ Route::POST('/booking/payment', 'BookingController@payment');
 
 Route::VIEW('/booking/confirmed', 'confirmed');
 
+Route::GET('/booking/forget', 'BookingController@forget');
+
 
 // Debugging routes
 Route::GET('/env', function () {

@@ -94,9 +94,8 @@ class BookingController extends Controller
     public function payment(Request $request)
     {
       $this->validate($request, [
-        'cardname' => 'required',
-        'cardnumber' => 'required',
-        'paymentzip' => 'required'
+        'name' => 'required',
+        'number' => 'required'
       ]);
 
       // Find incomplete booking

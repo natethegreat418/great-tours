@@ -26,26 +26,35 @@
   <p>Total cost: {{ session('price') }} </p>
 </div>
 <div class="row">
+  <div class='card-wrapper'></div>
+</div>
+<div class="row">
   <form method="POST" action="/booking/payment">
     {{ csrf_field() }}
 
     <div class="form-group">
       <label>Full Name on Card</label>
-      <input type="text" name="cardname" pattern=".{3,}" title="Please enter a minimum of 3 characters" class="form-control" value='' required>
+      <input type="text" name="name" pattern=".{3,}" title="Please enter a minimum of 3 characters" class="form-control" value='' required>
     </div>
     <div class="form-group">
       <label>Credit Card Number</label>
-      <input type="text" name="cardnumber" class="form-control" value='' required>
-    </div>
-    <div class="form-group">
-      <label>Payment ZipCode</label>
-      <input type="text" name="paymentzip" pattern=".{5,}" title="Please enter a valid 5 digit ZipCode" class="form-control" value='' required>
+      <input type="text" name="number" class="form-control" value='' required>
     </div>
     <input name="bookingid" type="hidden" value="{{ session('incompletebookingid') }}">
     <button type="submit" name='submit' class="btn btn-success">Confirm and Get Traveling!</button>
   </form>
 </div>
 </div>
-</div>
 
 @endsection
+
+@push('javascript')
+<script type="text/javascript" src={{ URL::asset('js/jquery.card.js') }}></script>
+<script>
+  $(document).ready(function() {
+    $('form').card({
+        container: '.card-wrapper',
+    });
+  });
+</script>
+@endpush

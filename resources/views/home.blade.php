@@ -30,7 +30,7 @@
         <div class="owl-carousel owl-theme">
               @foreach ($group->tours as $tour)
               <div class="trip">
-                <a class="tripimg" href="/trips/{{ $tour->region }}/{{ $tour->url_path }}"> <img class="carousel-img" src="/images/{{ $tour->tile_image }}"></img> </a>
+                <a class="tripimg" href="/trips/{{ $tour->region }}/{{ $tour->url_path }}"> <img class="carousel-img" src="/images/{{ $tour->tile_image }}" alt="{{ $tour->img_alt }}"></a>
                 <h5>{{ $tour->name }}</h5>
               </div>
               @endforeach

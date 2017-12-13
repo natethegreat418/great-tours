@@ -13,12 +13,12 @@ class ToursTableSeeder extends Seeder
   public function run()
   {
     $tours = [
-      ['GTI', 'GTI.jpg', 'Drink Guinness straight from the source', 'Europe', 'Grand Tour of Ireland', 'Grand-Tour-of-Ireland'],
-      ['CRA', 'CRA.jpg', 'Discover a lost world...', 'Central-America', 'Costa Rican Adventure', 'Costa-Rican-Adventure'],
-      ['LPB', 'LPB.jpg', 'Pay too much for a trip in the Eye', 'Europe', 'London Paris Barcelona', 'London-Paris-Barcelona'],
-      ['WBI', 'WBI.jpg', 'Pretend to be Bill Bryson and walk around the Isles', 'Europe', 'Walk the British Isles', 'Walk-the-British-Isles'],
-      ['EAA', 'EAA.jpg', 'Trek through the mountains of Switzerland and Germany', 'Europe', 'European Alps Adventure', 'European-Alps-Adventure'],
-      ['BBB','BBB.jpg', 'Climb Mayan ruins and snorkel amongst the reefs', 'Central-America', 'Belize Beaches and Beyond', 'Belize-Beaches-and-Beyond']
+      ['GTI', 'GTI.jpg', 'Drink Guinness straight from the source', 'Europe', 'Grand Tour of Ireland', 'Grand-Tour-of-Ireland', 'Ireland photo'],
+      ['CRA', 'CRA.jpg', 'Discover a lost world...', 'Central-America', 'Costa Rican Adventure', 'Costa-Rican-Adventure', 'Costa Rica photo'],
+      ['LPB', 'LPB.jpg', 'Pay too much for a trip in the Eye', 'Europe', 'London Paris Barcelona', 'London-Paris-Barcelona', 'London photo'],
+      ['WBI', 'WBI.jpg', 'Pretend to be Bill Bryson and walk around the Isles', 'Europe', 'Walk the British Isles', 'Walk-the-British-Isles', 'Scotland photo'],
+      ['EAA', 'EAA.jpg', 'Trek through the mountains of Switzerland and Germany', 'Europe', 'European Alps Adventure', 'European-Alps-Adventure', 'Alps photo'],
+      ['BBB','BBB.jpg', 'Climb Mayan ruins and snorkel amongst the reefs', 'Central-America', 'Belize Beaches and Beyond', 'Belize-Beaches-and-Beyond', 'Belize photo']
     ];
 
     $count = count($tours);
@@ -33,6 +33,7 @@ class ToursTableSeeder extends Seeder
         'region' => $tour[3],
         'name' => $tour[4],
         'url_path' => $tour[5],
+        'img_alt' => $tour[6],
       ]);
       $count--;
     }

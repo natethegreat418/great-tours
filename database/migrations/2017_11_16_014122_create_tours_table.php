@@ -22,6 +22,7 @@ class CreateToursTable extends Migration
             $table->string('region');
             $table->string('name');
             $table->string('url_path');
+            $table->string('img_alt');
         });
     }
 

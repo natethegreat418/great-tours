@@ -25,7 +25,7 @@
     @foreach ($returnedtrips as $trip)
     <div class="col-md-6 col-6">
       <div class="trip-tile">
-        <a href="/trips/{{ $trip->region }}/{{ $trip->url_path }}"> <img class="img-fluid" src="/images/{{ $trip->tile_image }}"> </a>
+        <a href="/trips/{{ $trip->region }}/{{ $trip->url_path }}"> <img class="img-fluid" src="/images/{{ $trip->tile_image }}" alt="{{ $trip->img_alt }}"> </a>
         <h5>{{ $trip->name }}</h5>
       </div>
     </div>

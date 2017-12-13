@@ -7,7 +7,7 @@
 
 @section('content')
 <div class="container">
-  <div class="row">
+  <div class="row pageheader">
     <h1>Welcome to Great Tours</h1>
   </div>
 
@@ -26,11 +26,11 @@
     <div class="row">
       <h4> {{ $group->name }} Trips</h4>
     </div>
-      <div class="row">
-        <div class="owl-carousel">
+      <div class="row collection">
+        <div class="owl-carousel owl-theme">
               @foreach ($group->tours as $tour)
-              <div class="item">
-                <a href="/trips/{{ $tour->region }}/{{ $tour->url_path }}"> <img class="carousel-img" src="/images/{{ $tour->tile_image }}"></img> </a>
+              <div class="trip">
+                <a class="tripimg" href="/trips/{{ $tour->region }}/{{ $tour->url_path }}"> <img class="carousel-img" src="/images/{{ $tour->tile_image }}"></img> </a>
                 <h5>{{ $tour->name }}</h5>
               </div>
               @endforeach
@@ -45,7 +45,6 @@
     $(document).ready(function(){
       $(".owl-carousel").owlCarousel({
         loop: true,
-        nav: true,
         lazyLoad: true,
         responsive: {
           0: {

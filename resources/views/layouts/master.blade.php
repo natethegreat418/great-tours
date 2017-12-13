@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
   <head>
-    <title>Great-Tours LLC</title>
+    <title>Great Tours LLC</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">

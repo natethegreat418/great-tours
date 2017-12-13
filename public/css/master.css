@@ -1,7 +1,15 @@
-.trip-img {
-  max-width: 300px;
-  max-height: 300px;
-  margin-bottom: .25em;
+.collection {
+  margin-top: .5em;
+  margin-bottom: .5em;
+}
+
+.pageheader {
+  text-align: center;
+  margin-top: 1em;
+}
+
+.trip {
+  margin: .5em;
 }
 
 .carousel-img {
@@ -10,8 +18,16 @@
   height: 250px;
 }
 
-.item {
-  margin: 3px;
+.nav-link {
+  color: black;
+}
+
+.booking-nav-current {
+  background-color: yellow;
+}
+
+.booking-nav-done {
+  background-color: lightgreen;
 }
 
 .trip-tile {
@@ -25,4 +41,6 @@
 
 .last-action {
   background-color: lightyellow;
+  padding: .5em;
+  margin: .5em;
 }

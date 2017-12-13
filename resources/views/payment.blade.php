@@ -1,15 +1,15 @@
 @extends('layouts.booking.master')
 
 @push('breadcrumb')
-<li class="nav-item"><a class="nav-link" href="{{ URL::previous() }}">Details ></a></li>
-<li class="nav-item"><a class="nav-link" href="">Payment ></a></li>
+<li class="nav-item"><a class="nav-link booking-nav-done" href="/booking/details">Details</a></li>
+<li class="nav-item"><a class="nav-link booking-nav-current" href="">Payment</a></li>
 <li class="nav-item"><a class="nav-link disabled" href="">Confirmed ></a></li>
 @endpush
 
 @section('content')
 
 <div class="container">
-<div class="row">
+<div class="row pageheader">
 <h2>Step 2: Payment Details</h2>
 </div>
 
@@ -38,7 +38,7 @@
     </div>
     <div class="form-group">
       <label>Credit Card Number</label>
-      <input type="text" name="number" class="form-control" value='' required>
+      <input type="text" name="number" pattern=".{19,}" title="Please enter a valid card number" class="form-control" value='' required>
     </div>
     <input name="bookingid" type="hidden" value="{{ session('incompletebookingid') }}">
     <button type="submit" name='submit' class="btn btn-success">Confirm and Get Traveling!</button>

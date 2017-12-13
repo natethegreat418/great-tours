@@ -6,14 +6,14 @@
 
 @push('breadcrumb')
   @if (isset($tour))
-    <a class="nav-link" href="/trips/{{ $tour->region }}">{{ $tour->region }} /</a>
+    <a class="nav-link" href="/trips/{{ $tour->region }}">{{ $tour->region }}</a>
     <a class="nav-link" href="/trips/{{ $tour->region }}/{{ $tour->url_path }}">{{ $tour->name }}<a/>
   @endif
 @endpush
 
 @section('content')
 <div class="container">
-    <div class="row">
+    <div class="row pageheader">
       <h1> {{ $tour['name'] }}</h1>
     </div>
     <div class='row'>
@@ -29,6 +29,7 @@
               @foreach ($departures as $departure)
                 <div class="radio">
                   <label><input class="departure" type="radio" name="departureid" value="{{ $departure['id'] }}" required>{{ $departure['tour_date'] }}</label>
+                  <p>| Just ${{ $departure['price'] }} with flights </p>
                 </div>
               @endforeach
         </div>

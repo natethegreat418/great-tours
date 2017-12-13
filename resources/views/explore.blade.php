@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-  <div class="row">
+  <div class="row pageheader">
     <h1>Explore All Trips</h1>
   </div>
 
@@ -23,7 +23,7 @@
 
   <div class="row">
     @foreach ($returnedtrips as $trip)
-    <div class="col-sm-6 col-md-4 col-lg-4 col-xl-3">
+    <div class="col-md-6 col-6">
       <div class="trip-tile">
         <a href="/trips/{{ $trip->region }}/{{ $trip->url_path }}"> <img class="img-fluid" src="/images/{{ $trip->tile_image }}"> </a>
         <h5>{{ $trip->name }}</h5>

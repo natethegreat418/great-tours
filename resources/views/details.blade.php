@@ -1,15 +1,15 @@
 @extends('layouts.booking.master')
 
 @push('breadcrumb')
-  <a class="nav-link" href="">Details /</a>
-  <a class="nav-link disabled" href="">Payment /</a>
-  <a class="nav-link disabled" href="">Confirmed </a>
+  <a class="nav-link booking-nav-current" href="">Details</a>
+  <a class="nav-link disabled" href="">Payment</a>
+  <a class="nav-link disabled" href="">Confirmed</a>
 @endpush
 
 @section('content')
 
 <div class="container">
-<div class="row">
+<div class="row pageheader">
   <h2>Step 1: Traveler Details</h2>
 
   @if(session('alert'))

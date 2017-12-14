@@ -72,7 +72,7 @@ class ItineraryController extends Controller
   {
     // Query for requested tour
     $trip = $request->route()->parameters()['trip'];
-    $gettour = Tour::where('url_path', '=', $trip)->first();
+    $gettour = Tour::where('url_path', 'LIKE', $trip)->first();
 
     // If none exist redirect to all trips
     if(count($gettour) < 1) {
@@ -93,7 +93,7 @@ class ItineraryController extends Controller
   {
     // Get tours associated with requested region
     $region = $request->route()->parameters()['region'];
-    $relevanttrips = Tour::where('region', '=', $region)->get();
+    $relevanttrips = Tour::where('region_url', 'LIKE', $region)->get();
 
     // If none exist redirect to all trips
     if(count($relevanttrips) < 1) {
@@ -101,7 +101,8 @@ class ItineraryController extends Controller
     }
 
     return view('region')->with([
-      'region' => $region,
+      'region_url' => $relevanttrips->first()->region_url,
+      'region' => $relevanttrips->first()->region,
       'returnedtrips' => $relevanttrips
     ]);
   }

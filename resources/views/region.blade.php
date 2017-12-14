@@ -2,7 +2,7 @@
 
 @push('breadcrumb')
   @if (isset($region))
-    <a class="nav-link" href="/trips/{{ $region }}">{{ $region }} </a>
+    <a class="nav-link" href="/trips/{{ $region_url }}">{{ $region }} </a>
   @endif
 @endpush
 
@@ -15,7 +15,7 @@
     @foreach ($returnedtrips as $trip)
     <div class="col-md-6 col-6">
       <div class="trip-tile">
-        <a href="/trips/{{ $trip->region }}/{{ $trip->url_path }}"> <img class="img-fluid" src="/images/{{ $trip->tile_image }}" alt="{{ $trip->img_alt }}"> </a>
+        <a href="/trips/{{ $trip->region_url }}/{{ $trip->url_path }}"> <img class="img-fluid" src="/images/{{ $trip->tile_image }}" alt="{{ $trip->img_alt }}"> </a>
         <h5>{{ $trip->name }}</h5>
       </div>
     </div>

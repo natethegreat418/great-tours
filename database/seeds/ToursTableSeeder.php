@@ -13,12 +13,12 @@ class ToursTableSeeder extends Seeder
   public function run()
   {
     $tours = [
-      ['GTI', 'GTI.jpg', 'Drink Guinness straight from the source', 'Europe', 'Grand Tour of Ireland', 'Grand-Tour-of-Ireland', 'Ireland photo'],
-      ['CRA', 'CRA.jpg', 'Discover a lost world...', 'Central-America', 'Costa Rican Adventure', 'Costa-Rican-Adventure', 'Costa Rica photo'],
-      ['LPB', 'LPB.jpg', 'Pay too much for a trip in the Eye', 'Europe', 'London Paris Barcelona', 'London-Paris-Barcelona', 'London photo'],
-      ['WBI', 'WBI.jpg', 'Pretend to be Bill Bryson and walk around the Isles', 'Europe', 'Walk the British Isles', 'Walk-the-British-Isles', 'Scotland photo'],
-      ['EAA', 'EAA.jpg', 'Trek through the mountains of Switzerland and Germany', 'Europe', 'European Alps Adventure', 'European-Alps-Adventure', 'Alps photo'],
-      ['BBB','BBB.jpg', 'Climb Mayan ruins and snorkel amongst the reefs', 'Central-America', 'Belize Beaches and Beyond', 'Belize-Beaches-and-Beyond', 'Belize photo']
+      ['GTI', 'GTI.jpg', 'Drink Guinness straight from the source', 'Europe', 'europe', 'Grand Tour of Ireland', 'grand-tour-of-ireland', 'Ireland photo'],
+      ['CRA', 'CRA.jpg', 'Discover a lost world...', 'Central America', 'central-america', 'Costa Rican Adventure', 'costa-rican-adventure', 'Costa Rica photo'],
+      ['LPB', 'LPB.jpg', 'Pay too much for a trip in the Eye', 'Europe', 'europe', 'London Paris Barcelona', 'london-paris-barcelona', 'London photo'],
+      ['WBI', 'WBI.jpg', 'Pretend to be Bill Bryson and walk around the Isles', 'Europe', 'europe', 'Walk the British Isles', 'walk-the-british-isles', 'Scotland photo'],
+      ['EAA', 'EAA.jpg', 'Trek through the mountains of Switzerland and Germany', 'Europe', 'europe', 'European Alps Adventure', 'european-alps-adventure', 'Alps photo'],
+      ['BBB','BBB.jpg', 'Climb Mayan ruins and snorkel amongst the reefs', 'Central America', 'central-america', 'Belize Beaches and Beyond', 'belize-beaches-and-beyond', 'Belize photo']
     ];
 
     $count = count($tours);
@@ -31,9 +31,10 @@ class ToursTableSeeder extends Seeder
         'tile_image' => $tour[1],
         'descr' => $tour[2],
         'region' => $tour[3],
-        'name' => $tour[4],
-        'url_path' => $tour[5],
-        'img_alt' => $tour[6],
+        'region_url' => $tour[4],
+        'name' => $tour[5],
+        'url_path' => $tour[6],
+        'img_alt' => $tour[7],
       ]);
       $count--;
     }

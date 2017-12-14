@@ -20,6 +20,7 @@ class CreateToursTable extends Migration
             $table->string('tile_image');
             $table->longText('descr');
             $table->string('region');
+            $table->string('region_url');
             $table->string('name');
             $table->string('url_path');
             $table->string('img_alt');

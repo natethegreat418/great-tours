@@ -13,7 +13,7 @@ class ItineraryController extends Controller
   // Handles homepage requests
   public function index()
   {
-    
+
     $displaytours = Tag::with('tours')->where('display','=',1)->get();
 
     $recentlyquotedtrip = Departure::with('tour')
@@ -73,7 +73,7 @@ class ItineraryController extends Controller
     // Query for requested tour
     $trip = $request->route()->parameters()['trip'];
     $gettour = Tour::where('url_path', '=', $trip)->first();
-
+    
     // If none exist redirect to all trips
     if(count($gettour) < 1) {
       return redirect('trips/explore')->with('alert', 'Sorry, there are is itinerary available with that name');

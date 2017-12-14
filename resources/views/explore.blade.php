@@ -19,7 +19,7 @@
 
   @elseif(isset($recentlyquotedtrip))
   <div class="last-action">
-    <h6>Learn more about <a href="/trips/{{ $recentlyquotedtrip->tour->region }}/{{ $recentlyquotedtrip->tour->url_path }}">{{ $recentlyquotedtrip->tour->name }}</a></h6>
+    <h6>Learn more about <a href="/trips/{{ $recentlyquotedtrip->tour->region_url }}/{{ $recentlyquotedtrip->tour->url_path }}">{{ $recentlyquotedtrip->tour->name }}</a></h6>
   </div>
   @endif
 
@@ -27,7 +27,7 @@
     @foreach ($returnedtrips as $trip)
     <div class="col-md-6 col-6">
       <div class="trip-tile">
-        <a href="/trips/{{ $trip->region }}/{{ $trip->url_path }}"> <img class="img-fluid" src="/images/{{ $trip->tile_image }}" alt="{{ $trip->img_alt }}"> </a>
+        <a href="/trips/{{ $trip->region_url }}/{{ $trip->url_path }}"> <img class="img-fluid" src="/images/{{ $trip->tile_image }}" alt="{{ $trip->img_alt }}"> </a>
         <h5>{{ $trip->name }}</h5>
       </div>
     </div>

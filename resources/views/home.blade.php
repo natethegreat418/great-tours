@@ -18,7 +18,7 @@
   </div>
   @elseif(isset($recentlyquotedtrip))
   <div class="last-action">
-    <h6>You recently quoted <a href="/trips/{{ $recentlyquotedtrip->tour->region }}/{{ $recentlyquotedtrip->tour->url_path }}">{{ $recentlyquotedtrip->tour->name }}</a></h6>
+    <h6>You recently quoted <a href="/trips/{{ $recentlyquotedtrip->tour->region_url }}/{{ $recentlyquotedtrip->tour->url_path }}">{{ $recentlyquotedtrip->tour->name }}</a></h6>
   </div>
   @endif
 
@@ -30,7 +30,7 @@
       <div class="owl-carousel owl-theme">
         @foreach ($group->tours as $tour)
         <div class="trip">
-          <a class="tripimg" href="/trips/{{ $tour->region }}/{{ $tour->url_path }}"> <img class="carousel-img" src="/images/{{ $tour->tile_image }}" alt="{{ $tour->img_alt }}"></a>
+          <a class="tripimg" href="/trips/{{ $tour->region_url }}/{{ $tour->url_path }}"> <img class="carousel-img" src="/images/{{ $tour->tile_image }}" alt="{{ $tour->img_alt }}"></a>
           <h5>{{ $tour->name }}</h5>
         </div>
         @endforeach

@@ -7,7 +7,7 @@
 @push('breadcrumb')
   @if (isset($tour))
     <a class="nav-link" href="/trips/{{ $tour->region }}">{{ $tour->region }}</a>
-    <a class="nav-link" href="/trips/{{ $tour->region }}/{{ $tour->url_path }}">{{ $tour->name }}<a/>
+    <a class="nav-link" href="/trips/{{ $tour->region }}/{{ $tour->url_path }}">{{ $tour->name }}</a>
   @endif
 @endpush
 

@@ -40,7 +40,7 @@ class BookingController extends Controller
 
     // Get any bookings for given user on requested departure
     $existingbooking = Booking::where('user', '=', $request['email'])
-    ->where('departure_id', "=", session('departureid'))->first();
+      ->where('departure_id', "=", session('departureid'))->first();
 
     // Existing booking for user on departure
     if(count($existingbooking) > 0) {
@@ -77,8 +77,8 @@ class BookingController extends Controller
     $booking->save();
 
     $incompletebooking = Booking::with('tour','departure')->where('user', '=', $request['email'])
-    ->where('departure_id', '=', $departure->id)
-    ->first();
+      ->where('departure_id', '=', $departure->id)
+      ->first();
 
     // Proceed to payment with purchase summary
     $request->session()->put('incompletebookingid', $incompletebooking->id);

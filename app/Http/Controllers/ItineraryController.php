@@ -73,7 +73,7 @@ class ItineraryController extends Controller
     // Query for requested tour
     $trip = $request->route()->parameters()['trip'];
     $gettour = Tour::where('url_path', '=', $trip)->first();
-    
+
     // If none exist redirect to all trips
     if(count($gettour) < 1) {
       return redirect('trips/explore')->with('alert', 'Sorry, there are is itinerary available with that name');

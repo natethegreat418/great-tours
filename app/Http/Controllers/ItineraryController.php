@@ -82,9 +82,13 @@ class ItineraryController extends Controller
     // Get associated departures for requested tour
     $departures = Departure::where('tour_id', '=', $gettour->id)->where('status','=','Available')->get()->toArray();
 
+    // Get associated product tags
+    $tags = Tour::with('tags')->where('id', '=', $gettour->id)->get()->first()->toArray();
+
     return view('trip')->with([
       'tour' => $gettour,
-      'departures' => $departures
+      'departures' => $departures,
+      'tags' => $tags['tags']
     ]);
   }
 
